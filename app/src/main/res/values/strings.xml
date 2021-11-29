@@ -1,3 +1,12 @@
 <resources>
     <string name="app_name">MilkRecordKeeping</string>
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="add_new_item">Add new milkman entry!</string>
+    <string name="add_milkman">Add milkman</string>
+    <string name="item_name_req">Name <font color='#FF0000'>*</font></string>
+    <string name="mobile_req">Mobile <font color='#FF0000'>*</font></string>
+    <string name="currency_symbol">Rs.</string>
+    <string name="rate_req">Milk rate per/litre <font color='#FF0000'>*</font></string>
+    <string name="save_action">Save</string>
+    <string name="record_milk">Record milk!</string>
 </resources>
