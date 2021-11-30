@@ -9,4 +9,7 @@
     <string name="rate_req">Milk rate per/litre <font color='#FF0000'>*</font></string>
     <string name="save_action">Save</string>
     <string name="record_milk">Record milk!</string>
+    <string name="show_milk_data">Milk entries</string>
+    <string name="add_milk_entry">Add milk entry</string>
+    <string name="quantity_req">No of litres</string>
 </resources>

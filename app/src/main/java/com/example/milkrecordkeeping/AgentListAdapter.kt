@@ -9,8 +9,39 @@ import com.example.milkrecordkeeping.AgentListAdapter.AgentViewHolder
 import com.example.milkrecordkeeping.data.Agent
 import com.example.milkrecordkeeping.databinding.AgentListItemBinding
 
-class AgentListAdapter(private val onItemClicked: (Agent) -> Unit) :
+class AgentListAdapter(private val onItemClicked: (Int) -> Unit) :
     ListAdapter<Agent, AgentViewHolder>(DiffCallback) {
+
+    class AgentViewHolder(private var binding: AgentListItemBinding, private val onItemClicked: (Int) -> Unit) :
+        RecyclerView.ViewHolder(binding.root) {
+        fun bind(agent: Agent) {
+            binding.apply {
+                name.text = agent.agentName
+                phone.text = agent.agentMobile
+                rate.text = agent.milkRate.toString()
+
+                recordMilk.setOnClickListener {
+                    onItemClicked(agent.id)
+                }
+            }
+        }
+    }
+
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): AgentViewHolder {
+        return AgentViewHolder(
+            AgentListItemBinding.inflate(
+                LayoutInflater.from(parent.context),
+                parent,
+                false
+            ),
+            onItemClicked
+        )
+    }
+
+    override fun onBindViewHolder(holder: AgentViewHolder, position: Int) {
+        val current = getItem(position)
+        holder.bind(current)
+    }
 
     companion object {
         private val DiffCallback = object : DiffUtil.ItemCallback<Agent>() {
@@ -23,35 +54,6 @@ class AgentListAdapter(private val onItemClicked: (Agent) -> Unit) :
             }
 
         }
-    }
-
-    class AgentViewHolder(private var binding: AgentListItemBinding) :
-        RecyclerView.ViewHolder(binding.root) {
-        fun bind(agent: Agent) {
-            binding.apply {
-                name.text = agent.agentName
-                phone.text = agent.agentMobile
-                rate.text = agent.milkRate.toString()
-            }
-        }
-    }
-
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): AgentViewHolder {
-        return AgentViewHolder(
-            AgentListItemBinding.inflate(
-                LayoutInflater.from(parent.context),
-                parent,
-                false
-            )
-        )
-    }
-
-    override fun onBindViewHolder(holder: AgentViewHolder, position: Int) {
-        val current = getItem(position)
-        holder.itemView.setOnClickListener {
-            onItemClicked(current)
-        }
-        holder.bind(current)
     }
 
 }

@@ -12,6 +12,9 @@
         <action
             android:id="@+id/action_listDeliveryPersonFragment_to_addMilkmanFragment"
             app:destination="@id/addMilkmanFragment" />
+        <action
+            android:id="@+id/action_listDeliveryPersonFragment_to_listMilkEntriesFragment"
+            app:destination="@id/listMilkEntriesFragment" />
     </fragment>
     <fragment
         android:id="@+id/addMilkmanFragment"
@@ -22,4 +25,21 @@
             android:id="@+id/action_addMilkmanFragment_to_listDeliveryPersonFragment"
             app:destination="@id/listDeliveryPersonFragment" />
     </fragment>
+    <fragment
+        android:id="@+id/listMilkEntriesFragment"
+        android:name="com.example.milkrecordkeeping.ListMilkEntriesFragment"
+        android:label="@string/show_milk_data"
+        tools:layout="@layout/list_milk_entries_fragment" >
+        <argument
+            android:name="agent_id"
+            app:argType="integer" />
+        <action
+            android:id="@+id/action_listMilkEntriesFragment_to_addMilkEntryFragment"
+            app:destination="@id/addMilkEntryFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/addMilkEntryFragment"
+        android:name="com.example.milkrecordkeeping.AddMilkEntryFragment"
+        android:label="@string/add_milk_entry"
+        tools:layout="@layout/add_milk_entry_fragment" />
 </navigation>

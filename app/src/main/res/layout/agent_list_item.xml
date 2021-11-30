@@ -33,7 +33,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="8dp"
-                    android:textAppearance="?attr/textAppearanceBody2"
+                    android:textAppearance="?attr/textAppearanceSubtitle2"
                     android:textColor="?android:attr/textColorSecondary"
                     tools:text="8978382378" />
 
@@ -42,10 +42,9 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="16dp"
-                    android:textAppearance="?attr/textAppearanceBody2"
+                    android:textAppearance="?attr/textAppearanceListItemSecondary"
                     android:textColor="?android:attr/textColorSecondary"
                     tools:text="30" />
-
             </LinearLayout>
 
             <LinearLayout
@@ -55,12 +54,11 @@
                 android:orientation="horizontal">
 
                 <com.google.android.material.button.MaterialButton
+                    android:id="@+id/record_milk"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="8dp"
-                    android:text="@string/record_milk"
-                    />
-
+                    android:text="@string/record_milk" />
             </LinearLayout>
         </LinearLayout>
     </com.google.android.material.card.MaterialCardView>
