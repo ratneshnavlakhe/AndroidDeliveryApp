@@ -41,5 +41,9 @@
         android:id="@+id/addMilkEntryFragment"
         android:name="com.example.milkrecordkeeping.AddMilkEntryFragment"
         android:label="@string/add_milk_entry"
-        tools:layout="@layout/add_milk_entry_fragment" />
+        tools:layout="@layout/add_milk_entry_fragment">
+        <argument
+            android:name="agent_id"
+            app:argType="integer" />
+    </fragment>
 </navigation>

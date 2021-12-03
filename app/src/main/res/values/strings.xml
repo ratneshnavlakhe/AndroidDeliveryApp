@@ -12,4 +12,10 @@
     <string name="show_milk_data">Milk entries</string>
     <string name="add_milk_entry">Add milk entry</string>
     <string name="quantity_req">No of litres</string>
+    <string name="morning">1</string>
+    <string name="evening">2</string>
+    <string name="rate">Rate</string>
+    <string name="quantity">Milk (in litres)</string>
+    <string name="session">Milk Delivery Time</string>
+    <string name="date">Date</string>
 </resources>

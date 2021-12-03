@@ -12,7 +12,10 @@ import com.example.milkrecordkeeping.databinding.AgentListItemBinding
 class AgentListAdapter(private val onItemClicked: (Int) -> Unit) :
     ListAdapter<Agent, AgentViewHolder>(DiffCallback) {
 
-    class AgentViewHolder(private var binding: AgentListItemBinding, private val onItemClicked: (Int) -> Unit) :
+    class AgentViewHolder(
+        private var binding: AgentListItemBinding,
+        private val onItemClicked: (Int) -> Unit
+    ) :
         RecyclerView.ViewHolder(binding.root) {
         fun bind(agent: Agent) {
             binding.apply {
@@ -50,7 +53,7 @@ class AgentListAdapter(private val onItemClicked: (Int) -> Unit) :
             }
 
             override fun areContentsTheSame(oldItem: Agent, newItem: Agent): Boolean {
-                return oldItem.agentName == newItem.agentName
+                return oldItem.id == newItem.id
             }
 
         }
