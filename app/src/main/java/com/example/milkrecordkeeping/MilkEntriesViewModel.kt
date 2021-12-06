@@ -35,10 +35,11 @@ class MilkEntriesViewModel(private val entriesDao: EntriesDao, agentId: Int) : V
         checkedRadioButtonId: String
     ) = MilkEntries(
         rate = rate.toDouble(),
-        quantity = quantity.toInt(),
-        session = checkedRadioButtonId.toInt(),
+        quantity = quantity.toDouble(),
+        session = checkedRadioButtonId,
         agentId = agentId,
-        createdDate = DateConverter().getDate()
+        createdDate = DateConverter().getDate(),
+        deliveryDate = ""
     )
 }
 
