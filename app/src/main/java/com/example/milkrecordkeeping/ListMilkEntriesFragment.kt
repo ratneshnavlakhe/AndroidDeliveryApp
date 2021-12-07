@@ -16,8 +16,7 @@ class  ListMilkEntriesFragment : Fragment() {
 
     private val viewModel: MilkEntriesViewModel by activityViewModels {
         MilkEntriesViewModelFactory(
-            (activity?.application as MilkRecordKeepingApplication).database.milkEntriesDao(),
-            navigationArgs.agentId
+            (activity?.application as MilkRecordKeepingApplication).database.milkEntriesDao()
         )
     }
 
@@ -34,11 +33,12 @@ class  ListMilkEntriesFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        val agentId = navigationArgs.agentId
         val adapter = MilkEntriesAdapter()
         binding.recyclerView.adapter = adapter
 
-        viewModel.allEntries.observe(this.viewLifecycleOwner) { entires ->
-            entires.let {
+        viewModel.getMilkEntries(agentId).observe(this.viewLifecycleOwner) { entries ->
+            entries.let {
                 adapter.submitList(it)
             }
         }

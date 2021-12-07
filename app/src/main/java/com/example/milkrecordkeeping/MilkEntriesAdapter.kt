@@ -18,8 +18,8 @@ class MilkEntriesAdapter :
             binding.apply {
                 rate.text = current.rate.toString()
                 quantity.text = current.quantity.toString()
-                session.text = current.session.toString()
-                date.text = current.createdDate
+                session.text = current.session
+                date.text = current.deliveryDate
             }
         }
 

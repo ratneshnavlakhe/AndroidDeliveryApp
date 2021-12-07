@@ -5,11 +5,14 @@ import com.example.milkrecordkeeping.data.Agent
 import com.example.milkrecordkeeping.data.AgentDao
 import com.example.milkrecordkeeping.util.DateConverter
 import kotlinx.coroutines.launch
-import java.lang.IllegalArgumentException
 
 class DeliveryPersonViewModel(private val agentDao: AgentDao) : ViewModel() {
 
     val allAgents: LiveData<List<Agent>> = agentDao.getAgents().asLiveData()
+
+    fun getAgent(agentId: Int): LiveData<Agent> {
+        return agentDao.getAgentById(agentId)
+    }
 
     fun add(name: String, phone: String, rate: String, address: String) {
         val newAgent = getNewAgentEntry(name, phone, rate, address)

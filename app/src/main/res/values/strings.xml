@@ -9,13 +9,15 @@
     <string name="rate_req">Milk rate per/litre <font color='#FF0000'>*</font></string>
     <string name="save_action">Save</string>
     <string name="record_milk">Record milk!</string>
-    <string name="show_milk_data">Milk entries</string>
-    <string name="add_milk_entry">Add milk entry</string>
-    <string name="quantity_req">No of litres</string>
-    <string name="morning">1</string>
-    <string name="evening">2</string>
+    <string name="show_milk_data">Daily Milk Entries</string>
+    <string name="add_milk_entry">Add milk delivery</string>
+    <string name="quantity_req">Milk (in litres)</string>
+    <string name="morning">Morning</string>
+    <string name="evening">Evening</string>
     <string name="rate">Rate</string>
     <string name="quantity">Milk (in litres)</string>
     <string name="session">Milk Delivery Time</string>
-    <string name="date">Date</string>
+    <string name="date_title">Delivery Date</string>
+    <string name="date_req">Date of delivery</string>
+    <string name="date">%1$d-%2$d-%3$d</string>
 </resources>
