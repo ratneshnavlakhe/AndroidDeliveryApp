@@ -4,9 +4,17 @@ import androidx.lifecycle.*
 import com.example.milkrecordkeeping.data.Agent
 import com.example.milkrecordkeeping.data.AgentDao
 import com.example.milkrecordkeeping.util.DateConverter
+import dagger.Binds
+import dagger.MapKey
+import dagger.Module
+import dagger.Provides
 import kotlinx.coroutines.launch
+import javax.inject.Inject
+import kotlin.reflect.KClass
 
-class DeliveryPersonViewModel(private val agentDao: AgentDao) : ViewModel() {
+class DeliveryPersonViewModel @Inject constructor(
+    private val agentDao: AgentDao
+) : ViewModel() {
 
     val allAgents: LiveData<List<Agent>> = agentDao.getAgents().asLiveData()
 
@@ -44,7 +52,7 @@ class DeliveryPersonViewModel(private val agentDao: AgentDao) : ViewModel() {
 
 }
 
-class DeliveryPersonViewModelFactory(private val agentDao: AgentDao): ViewModelProvider.Factory {
+class DeliveryPersonViewModelFactory @Inject constructor(private val agentDao: AgentDao): ViewModelProvider.Factory {
     override fun <T : ViewModel?> create(modelClass: Class<T>): T {
         if (modelClass.isAssignableFrom(DeliveryPersonViewModel::class.java)) {
             @Suppress("UNCHECKED_CAST")
@@ -55,3 +63,18 @@ class DeliveryPersonViewModelFactory(private val agentDao: AgentDao): ViewModelP
     }
 
 }
+
+@Module
+internal abstract class DeliveryPersonViewModelBuilder {
+    @Binds
+    internal abstract fun bindViewModelFactory(
+        factory: DeliveryPersonViewModelFactory
+    ): ViewModelProvider.Factory
+}
+
+@Target(
+    AnnotationTarget.FUNCTION, AnnotationTarget.PROPERTY_GETTER, AnnotationTarget.PROPERTY_SETTER
+)
+@Retention(AnnotationRetention.RUNTIME)
+@MapKey
+annotation class ViewModelKey(val value: KClass<out ViewModel>)
