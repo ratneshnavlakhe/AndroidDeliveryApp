@@ -3,6 +3,7 @@ package com.example.milkrecordkeeping.di
 import android.content.Context
 import androidx.room.Room
 import com.example.milkrecordkeeping.data.AgentDao
+import com.example.milkrecordkeeping.data.EntriesDao
 import com.example.milkrecordkeeping.data.MIGRATION_1_2
 import com.example.milkrecordkeeping.database.MilkDeliveryDatabase
 import dagger.Module
@@ -30,4 +31,11 @@ object ApplicationModule {
     fun providesAgentDao(database: MilkDeliveryDatabase): AgentDao {
         return database.agentDao()
     }
+
+    @Provides
+    @JvmStatic
+    fun providesEntriesDao(database: MilkDeliveryDatabase): EntriesDao {
+        return database.milkEntriesDao()
+    }
+
 }

@@ -4,9 +4,12 @@ import androidx.lifecycle.*
 import com.example.milkrecordkeeping.data.EntriesDao
 import com.example.milkrecordkeeping.data.MilkEntries
 import com.example.milkrecordkeeping.util.DateConverter
+import dagger.Binds
+import dagger.Module
 import kotlinx.coroutines.launch
+import javax.inject.Inject
 
-class MilkEntriesViewModel(private val entriesDao: EntriesDao) : ViewModel() {
+class MilkEntriesViewModel @Inject constructor(private val entriesDao: EntriesDao) : ViewModel() {
     fun getMilkEntries(agentId: Int): LiveData<List<MilkEntries>> {
         return entriesDao.getEntriesByAgent(agentId).asLiveData()
     }
@@ -52,7 +55,7 @@ class MilkEntriesViewModel(private val entriesDao: EntriesDao) : ViewModel() {
     )
 }
 
-class MilkEntriesViewModelFactory(private val entriesDao: EntriesDao) :
+class MilkEntriesViewModelFactory @Inject constructor(private val entriesDao: EntriesDao) :
     ViewModelProvider.Factory {
     override fun <T : ViewModel?> create(modelClass: Class<T>): T {
         if (modelClass.isAssignableFrom(MilkEntriesViewModel::class.java)) {
@@ -63,4 +66,12 @@ class MilkEntriesViewModelFactory(private val entriesDao: EntriesDao) :
         throw IllegalArgumentException("Unknown viewmodel class")
     }
 
+}
+
+@Module
+internal abstract class MilkEntriesViewModelBuilder {
+    @Binds
+    internal abstract fun bindMilkEntriesViewModelFactory(
+        factory: MilkEntriesViewModelFactory
+    ) : ViewModelProvider.Factory
 }

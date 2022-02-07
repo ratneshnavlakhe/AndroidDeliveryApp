@@ -6,15 +6,19 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
+import androidx.fragment.app.viewModels
+import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import com.example.milkrecordkeeping.databinding.FragmentAddMilkmanBinding
+import dagger.android.support.DaggerFragment
+import javax.inject.Inject
 
-class AddMilkmanFragment : Fragment() {
-    private val viewModel: DeliveryPersonViewModel by activityViewModels {
-        DeliveryPersonViewModelFactory(
-            (activity?.application as MilkRecordKeepingApplication).database.agentDao()
-        )
-    }
+class AddMilkmanFragment : DaggerFragment() {
+
+    @Inject
+    lateinit var viewModelFactory: ViewModelProvider.Factory
+
+    private val viewModel by viewModels<DeliveryPersonViewModel> { viewModelFactory }
     private var _binding: FragmentAddMilkmanBinding? = null
     private val binding get() = _binding!!
 
