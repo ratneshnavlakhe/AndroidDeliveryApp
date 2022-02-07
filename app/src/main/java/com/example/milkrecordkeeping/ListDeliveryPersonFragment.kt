@@ -4,19 +4,20 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.fragment.app.Fragment
-import androidx.fragment.app.activityViewModels
+import androidx.fragment.app.viewModels
+import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.milkrecordkeeping.databinding.ListDeliveryPersonFragmentBinding
+import dagger.android.support.DaggerFragment
+import javax.inject.Inject
 
-class ListDeliveryPersonFragment : Fragment() {
+class ListDeliveryPersonFragment : DaggerFragment() {
 
-    private val viewModel: DeliveryPersonViewModel by activityViewModels {
-        DeliveryPersonViewModelFactory(
-            (activity?.application as MilkRecordKeepingApplication).database.agentDao()
-        )
-    }
+    @Inject
+    lateinit var viewModelFactory: ViewModelProvider.Factory
+
+    private val viewModel by viewModels<DeliveryPersonViewModel> { viewModelFactory }
 
     private var _binding: ListDeliveryPersonFragmentBinding? = null
     private val binding get() = _binding!!
