@@ -4,21 +4,23 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.fragment.app.Fragment
-import androidx.fragment.app.activityViewModels
+import androidx.fragment.app.viewModels
+import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.milkrecordkeeping.databinding.ListMilkEntriesFragmentBinding
+import dagger.android.support.DaggerFragment
+import javax.inject.Inject
 
-class  ListMilkEntriesFragment : Fragment() {
+class ListMilkEntriesFragment : DaggerFragment() {
+
+    @Inject
+    lateinit var viewModelFactory: ViewModelProvider.Factory
+
     private val navigationArgs: ListMilkEntriesFragmentArgs by navArgs()
 
-    private val viewModel: MilkEntriesViewModel by activityViewModels {
-        MilkEntriesViewModelFactory(
-            (activity?.application as MilkRecordKeepingApplication).database.milkEntriesDao()
-        )
-    }
+    private val viewModel by viewModels<MilkEntriesViewModel> { viewModelFactory }
 
     private var _binding: ListMilkEntriesFragmentBinding? = null
     private val binding get() = _binding!!
