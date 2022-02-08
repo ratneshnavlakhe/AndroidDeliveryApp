@@ -7,28 +7,27 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.RadioButton
-import androidx.fragment.app.Fragment
-import androidx.fragment.app.activityViewModels
+import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.example.milkrecordkeeping.databinding.AddMilkEntryFragmentBinding
+import dagger.android.support.DaggerFragment
 import java.util.*
+import javax.inject.Inject
 
-class AddMilkEntryFragment : Fragment() {
+class AddMilkEntryFragment : DaggerFragment() {
+
+    @Inject
+    lateinit var milkEntriesViewModelFactory: MilkEntriesViewModelFactory
+
+    @Inject
+    lateinit var deliveryPersonViewModelFactory: DeliveryPersonViewModelFactory
 
     private val navigationArgs: AddMilkEntryFragmentArgs by navArgs()
 
-    private val viewModel: MilkEntriesViewModel by activityViewModels {
-        MilkEntriesViewModelFactory(
-            (activity?.application as MilkRecordKeepingApplication).database.milkEntriesDao()
-        )
-    }
+    private val viewModel by viewModels<MilkEntriesViewModel> { milkEntriesViewModelFactory }
 
-    private val deliveryPersonViewModel: DeliveryPersonViewModel by activityViewModels {
-        DeliveryPersonViewModelFactory(
-            (activity?.application as MilkRecordKeepingApplication).database.agentDao()
-        )
-    }
+    private val deliveryPersonViewModel by viewModels<DeliveryPersonViewModel> { deliveryPersonViewModelFactory }
 
     private var _binding: AddMilkEntryFragmentBinding? = null
     private val binding get() = _binding!!
