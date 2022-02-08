@@ -15,7 +15,8 @@ import javax.inject.Singleton
         ApplicationModule::class,
         ListDeliveryPersonModule::class,
         AddMilkmanModule::class,
-        ListMilkEntriesModule::class
+        ListMilkEntriesModule::class,
+        AddMilkEntryModule::class
     ]
 )
 interface ApplicationComponent : AndroidInjector<MilkRecordKeepingApplication> {
